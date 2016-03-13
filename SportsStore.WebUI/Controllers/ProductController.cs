@@ -16,6 +16,11 @@ namespace SportsStore.WebUI.Controllers
             this.repository = productRepository;
 
         }
+        /// <summary>
+        /// This is method.
+        /// </summary>
+        /// <param name="page"></param>
+        /// <returns></returns>
         public ViewResult List(int page = 1)
         {
             return View(repository.Products
