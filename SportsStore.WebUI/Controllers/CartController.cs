@@ -42,15 +42,25 @@ namespace SportsStore.WebUI.Controllers
             return PartialView(cart);
         }
 
-        //private Cart GetCart()
-        //{
-        //    Cart cart = (Cart)Session["Cart"];
-        //    if (cart == null)
-        //    {
-        //        cart = new Cart();
-        //        Session["Cart"] = cart;
-        //    }
-        //    return cart;
-        //}
+        public ViewResult CheckOut()
+        {
+            return View(new ShippingDetails());
+        }
+        [HttpPost]
+        public ViewResult CheckOut(Cart cart, ShippingDetails shippingDetails)
+        {
+            if (cart.Lines.Count() == 0)
+            {
+                ModelState.AddModelError("", "Sorry ! Cart is empty/");
+            }
+            if (ModelState.IsValid)
+            {
+                return View("Completed");
+
+            }
+            else
+                return View(shippingDetails);
+        }
+
     }
 }
