@@ -8,6 +8,8 @@ using SportsStore.Domain.Entities;
 using SportsStore.Domain.Abstract;
 using SportsStore.Domain.Concrete;
 using Moq;
+using SportsStore.WebUI.Infrastructure.Abstract;
+using SportsStore.WebUI.Infrastructure.Concrete;
 namespace SportsStore.WebUI.Infrastructure
 {
     public class NinjectDependencyResolver : IDependencyResolver
@@ -31,6 +33,7 @@ namespace SportsStore.WebUI.Infrastructure
         public void AddBindinds()
         {
             kernel.Bind<IProductRepository>().To<EFProductRrepository>();
+            kernel.Bind<IAuthProvider>().To<FormsAuthProvider>();
             //Mock<IProductRepository> mock = new Mock<IProductRepository>();
             //mock.Setup(m => m.Products).Returns(new List<Product> {
             //new  Product {Name ="Football",Price =25},
